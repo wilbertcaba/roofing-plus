@@ -468,7 +468,7 @@ export const home: (args: HomeArgs) => RequiredDataFromCollectionSlug<'pages'> =
                         format: 0,
                         mode: 'normal',
                         style: '',
-                        text: 'Dark Mode',
+                        text: 'Light Mode',
                         version: 1,
                       },
                     ],
