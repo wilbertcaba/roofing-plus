@@ -138,7 +138,7 @@ const config = {
           css: [
             {
               h1: {
-                fontSize: '3.5rem',
+                fontSize: '4rem',
               },
               h2: {
                 fontSize: '1.5rem',
