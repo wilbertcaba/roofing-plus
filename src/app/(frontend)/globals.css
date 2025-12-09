@@ -23,11 +23,11 @@
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
 
-    --primary: 222.2 47.4% 11.2%;
+    --primary: 217 100% 36.5%;
     --primary-foreground: 210 40% 98%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 240 26.2% 12.7%;
+    --secondary-foreground: 210 40% 98%;
 
     --muted: 210 40% 96.1%;
     --muted-foreground: 215.4 16.3% 46.9%;
@@ -59,11 +59,11 @@
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
 
-    --primary: 222.2 47.4% 11.2%;
+    --primary: 217 100% 36.5%;
     --primary-foreground: 210 40% 98%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 240 26.2% 12.7%;
+    --secondary-foreground: 210 40% 98%;
 
     --muted: 210 40% 96.1%;
     --muted-foreground: 215.4 16.3% 46.9%;
@@ -127,7 +127,36 @@
   }
 }
 
-html {
+@layer utilities {
+  .home-hero-title h1 {
+    font-size: 2rem !important; /* Default: 32px */
+    font-weight: normal !important;
+    line-height: 1.1 !important;
+    color: white;
+  }
+
+  /* Medium screens and up */
+  @media (min-width: 48rem) {
+    .home-hero-title h1 {
+      font-size: 3rem !important; /* 48px */
+      color: inherit;
+    }
+  }
+
+  /* Between 80rem and 96rem - smaller font for this range */
+  @media (min-width: 80rem) and (max-width: 95.999rem) {
+    .home-hero-title h1 {
+      font-size: 3.75rem !important; /* 60px */
+    }
+  }
+
+  /* 96rem and above - back to full size */
+  @media (min-width: 96rem) {
+    .home-hero-title h1 {
+      font-size: 4rem !important; /* 64px */
+    }
+  }
+}html {
   opacity: 0;
 }
 
