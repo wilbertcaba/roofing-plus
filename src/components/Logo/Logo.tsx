@@ -16,13 +16,13 @@ export const Logo = (props: Props) => {
   return (
     /* eslint-disable @next/next/no-img-element */
     <img
-      alt="Payload Logo"
-      width={193}
-      height={34}
+      alt="Roofing Plus Logo"
+      width={228}
+      height={43}
       loading={loading}
       fetchPriority={priority}
       decoding="async"
-      className={clsx('max-w-[9.375rem] w-full h-[34px]', className)}
+      className={clsx('max-w-[250px] w-full h-[43px]', className)}
       src="/api/media/file/logo-roofing-plus.svg"
     />
   )
