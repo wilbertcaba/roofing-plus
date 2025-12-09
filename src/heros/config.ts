@@ -7,6 +7,7 @@ import {
   lexicalEditor,
 } from '@payloadcms/richtext-lexical'
 
+import { link } from '@/fields/link'
 import { linkGroup } from '@/fields/linkGroup'
 
 export const hero: Field = {
@@ -57,6 +58,39 @@ export const hero: Field = {
       }),
       label: false,
     },
+    {
+      name: 'ctaHomeHero',
+      type: 'group',
+      admin: {
+        condition: (_, { type } = {}) => type === 'homeHero',
+        description: 'Adds the the content for the Home Hero CTA',
+      },
+      fields: [
+        {
+          name: 'subHeadline',
+          type: 'richText',
+          editor: lexicalEditor({
+            features: ({ rootFeatures }) => {
+              return [...rootFeatures, FixedToolbarFeature(), InlineToolbarFeature()]
+            },
+          }),
+          label: 'Sub-headline',
+        },
+        {
+          name: 'image',
+          type: 'upload',
+          relationTo: 'media',
+          label: 'Avatar',
+        },
+        link({
+          overrides: {
+            name: 'button',
+            label: 'Button',
+          },
+        }),
+      ],
+      label: 'Hero CTA',
+    },
     linkGroup({
       overrides: {
         maxRows: 2,
@@ -66,10 +100,10 @@ export const hero: Field = {
       name: 'media',
       type: 'upload',
       admin: {
-        condition: (_, { type } = {}) => ['highImpact', 'mediumImpact'].includes(type),
+        condition: (_, { type } = {}) => ['highImpact', 'mediumImpact', 'homeHero'].includes(type),
       },
       relationTo: 'media',
-      required: true,
+      required: false,
     },
   ],
   label: false,
