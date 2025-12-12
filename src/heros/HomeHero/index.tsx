@@ -21,7 +21,7 @@ export const HomeHero: React.FC<Page['hero']> = ({ ctaHomeHero, media, richText 
 
   return (
     <div
-      className="relative flex items-center justify-center text-slate-900 h-[480px] md:min-h-[80vh] bg-slate-100 overflow-hidden"
+      className="relative flex items-center justify-center text-slate-900 h-[480px] md:min-h-[80vh] bg-slate-100 overflow-hidden pb-32"
       data-theme="light"
     >
       <Image
@@ -38,7 +38,7 @@ export const HomeHero: React.FC<Page['hero']> = ({ ctaHomeHero, media, richText 
         height={126}
         className="absolute bottom-0 left-1/4 rotate-180"
       />
-      <div className="container mb-8 z-10 relative grid grid-cols-1 lg:grid-cols-2 items-center">
+      <div className="container z-10 relative grid grid-cols-1 lg:grid-cols-2 items-center">
         <div className="max-w-[40rem]">
           {richText && (
             <RichText
