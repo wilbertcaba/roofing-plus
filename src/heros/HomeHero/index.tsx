@@ -36,7 +36,7 @@ export const HomeHero: React.FC<Page['hero']> = ({ ctaHomeHero, media, richText 
         alt="Plus pattern"
         width={154}
         height={126}
-        className="absolute bottom-0 left-1/4 rotate-180"
+        className="absolute bottom-20 left-1/4 rotate-180"
       />
       <div className="container z-10 relative grid grid-cols-1 lg:grid-cols-2 md:items-center">
         <div className="max-w-[40rem]">
