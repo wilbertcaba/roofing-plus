@@ -3,6 +3,7 @@ import { link } from '@/fields/link'
 import {
   FixedToolbarFeature,
   InlineToolbarFeature,
+  HeadingFeature,
   lexicalEditor,
 } from '@payloadcms/richtext-lexical'
 
@@ -46,6 +47,7 @@ export const ServicesBlock: Block = {
           editor: lexicalEditor({
             features: ({ rootFeatures }) => [
               ...rootFeatures,
+              HeadingFeature({ enabledHeadingSizes: ['h2', 'h3'] }),
               FixedToolbarFeature(),
               InlineToolbarFeature(),
             ],
