@@ -13,6 +13,13 @@ export const Header: GlobalConfig = {
       name: 'navItems',
       type: 'array',
       fields: [
+        {
+          name: 'navItemIcon',
+          type: 'upload',
+          relationTo: 'media',
+          label: 'Nav Item Icon',
+          required: false,
+        },
         link({
           appearances: false,
         }),

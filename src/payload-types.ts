@@ -1695,6 +1695,7 @@ export interface Header {
   id: number;
   navItems?:
     | {
+        navItemIcon?: (number | null) | Media;
         link: {
           type?: ('reference' | 'custom') | null;
           newTab?: boolean | null;
@@ -1753,6 +1754,7 @@ export interface HeaderSelect<T extends boolean = true> {
   navItems?:
     | T
     | {
+        navItemIcon?: T;
         link?:
           | T
           | {

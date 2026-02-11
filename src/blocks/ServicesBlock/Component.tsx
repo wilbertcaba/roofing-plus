@@ -21,7 +21,7 @@ export const ServicesBlock: React.FC<ServicesBlockType> = ({
   }
 
   return (
-    <section className={cn('relative z-20', offset && '-mt-48')}>
+    <section className={cn('relative z-20 overflow-hidden', offset && '-mt-48')}>
       <div className="container mx-auto p-0">
         {/* Optional Section Header */}
         {(heading || subheading) && (
