@@ -137,11 +137,29 @@ const config = {
         md: {
           css: [
             {
+              h2: {
+                fontSize: '2rem',
+              },
+            },
+          ],
+        },
+        lg: {
+          css: [
+            {
+              h2: {
+                fontSize: '2.5rem',
+              },
+            },
+          ],
+        },
+        xl: {
+          css: [
+            {
               h1: {
                 fontSize: '4rem',
               },
               h2: {
-                fontSize: '1.5rem',
+                fontSize: '4rem',
               },
             },
           ],
