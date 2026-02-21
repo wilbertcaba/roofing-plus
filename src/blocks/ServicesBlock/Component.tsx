@@ -21,7 +21,12 @@ export const ServicesBlock: React.FC<ServicesBlockType> = ({
   }
 
   return (
-    <section className={cn('relative z-20 overflow-hidden', offset && '-mt-48')}>
+    <div
+      className={cn(
+        'relative z-20 overflow-hidden',
+        offset && 'absolute -translate-y-1/2 -translate-x-1/2 left-1/2 w-full',
+      )}
+    >
       <div className="container mx-auto p-0">
         {/* Optional Section Header */}
         {(heading || subheading) && (
@@ -45,7 +50,7 @@ export const ServicesBlock: React.FC<ServicesBlockType> = ({
               <CarouselItem key={index} className="p-0 basis-[80%] md:basis-[60%] lg:basis-1/3">
                 <div className="p-2 md:p-4">
                   <Card className="bg-white rounded-xl shadow-xl hover:shadow-sm transition-shadow duration-300 border-none">
-                    <CardHeader className="space-y-0 flex flex-row gap-4 items-center">
+                    <CardHeader className="p-4 md:p-6 space-y-0 flex flex-row gap-4 items-center">
                       {/* Service Icon */}
                       {service.icon && typeof service.icon === 'object' && (
                         <div className="w-12 h-12 xl:w-16 xl:h-16 2xl:w-20 2xl:h-20 shrink-0 m-0">
@@ -65,10 +70,10 @@ export const ServicesBlock: React.FC<ServicesBlockType> = ({
                         )}
                       </CardTitle>
                     </CardHeader>
-                    <CardContent className="text-gray-600 leading-relaxed hyphens-auto">
+                    <CardContent className="text-gray-600 p-4 md:p-6 leading-relaxed hyphens-auto">
                       {service.description}
                     </CardContent>
-                    <CardFooter>
+                    <CardFooter className="p-4 md:p-6">
                       {/* Link to Service Page */}
                       {service.link && <CMSLink {...service.link} appearance="secondary" />}
                     </CardFooter>
@@ -79,6 +84,6 @@ export const ServicesBlock: React.FC<ServicesBlockType> = ({
           </CarouselContent>
         </Carousel>
       </div>
-    </section>
+    </div>
   )
 }
