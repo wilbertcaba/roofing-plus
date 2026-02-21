@@ -8,6 +8,7 @@ import { ContentBlock } from '@/blocks/Content/Component'
 import { FormBlock } from '@/blocks/Form/Component'
 import { MediaBlock } from '@/blocks/MediaBlock/Component'
 import { ServicesBlock } from '@/blocks/ServicesBlock/Component'
+import { ProjectsFeaturedBlock } from '@/blocks/ProjectsFeatured/Component'
 
 const blockComponents = {
   archive: ArchiveBlock,
@@ -16,6 +17,7 @@ const blockComponents = {
   formBlock: FormBlock,
   mediaBlock: MediaBlock,
   services: ServicesBlock,
+  featuredProject: ProjectsFeaturedBlock,
 }
 
 export const RenderBlocks: React.FC<{
@@ -36,10 +38,10 @@ export const RenderBlocks: React.FC<{
 
             if (Block) {
               return (
-                <div className="py-16" key={index}>
+                <section className="py-16 relative" key={index}>
                   {/* @ts-expect-error there may be some mismatch between the expected types here */}
                   <Block {...block} disableInnerContainer />
-                </div>
+                </section>
               )
             }
           }
