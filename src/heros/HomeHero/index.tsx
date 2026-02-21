@@ -20,7 +20,7 @@ export const HomeHero: React.FC<Page['hero']> = ({ ctaHomeHero, media, richText 
   })
 
   return (
-    <div
+    <section
       className="relative flex md:items-center justify-center text-slate-900 h-[540px] md:min-h-[80vh] bg-slate-100 overflow-hidden pb-32"
       data-theme="light"
     >
@@ -102,6 +102,6 @@ export const HomeHero: React.FC<Page['hero']> = ({ ctaHomeHero, media, richText 
           />
         )}
       </div>
-    </div>
+    </section>
   )
 }
