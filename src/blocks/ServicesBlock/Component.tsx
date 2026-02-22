@@ -24,7 +24,7 @@ export const ServicesBlock: React.FC<ServicesBlockType> = ({
     <div
       className={cn(
         'relative z-20 overflow-hidden',
-        offset && 'absolute -translate-y-1/2 -translate-x-1/2 left-1/2 w-full',
+        offset && 'absolute -translate-y-1/3 -translate-x-1/2 left-1/2 w-full',
       )}
     >
       <div className="container mx-auto p-0">
@@ -60,7 +60,7 @@ export const ServicesBlock: React.FC<ServicesBlockType> = ({
                           />
                         </div>
                       )}
-                      <CardTitle className="m-0">
+                      <div className="m-0">
                         {service.serviceTitle && (
                           <RichText
                             className="text-xl xl:text-2xl 2xl:text-3xl mx-0 font-semibold text-gray-900 2xl:pr-7"
@@ -68,12 +68,12 @@ export const ServicesBlock: React.FC<ServicesBlockType> = ({
                             enableGutter={false}
                           />
                         )}
-                      </CardTitle>
+                      </div>
                     </CardHeader>
-                    <CardContent className="text-gray-600 p-4 md:p-6 leading-relaxed hyphens-auto">
+                    <CardContent className="text-gray-600 px-4 md:px-6 leading-relaxed hyphens-auto">
                       {service.description}
                     </CardContent>
-                    <CardFooter className="p-4 md:p-6">
+                    <CardFooter className="px-4 md:px-6">
                       {/* Link to Service Page */}
                       {service.link && <CMSLink {...service.link} appearance="secondary" />}
                     </CardFooter>
