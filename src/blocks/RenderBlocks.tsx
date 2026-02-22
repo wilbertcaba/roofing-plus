@@ -9,6 +9,7 @@ import { FormBlock } from '@/blocks/Form/Component'
 import { MediaBlock } from '@/blocks/MediaBlock/Component'
 import { ServicesBlock } from '@/blocks/ServicesBlock/Component'
 import { ProjectsFeaturedBlock } from '@/blocks/ProjectsFeatured/Component'
+import { ClientLogosBlock } from '@/blocks/ClientLogos/Component'
 
 const blockComponents = {
   archive: ArchiveBlock,
@@ -18,7 +19,15 @@ const blockComponents = {
   mediaBlock: MediaBlock,
   services: ServicesBlock,
   featuredProject: ProjectsFeaturedBlock,
+  clientLogos: ClientLogosBlock,
 }
+
+const blocksWithNoPadding: Array<keyof typeof blockComponents> = [
+  'clientLogos',
+  'featuredProject',
+  'services',
+]
+const blocksWithNoPaddingSet = new Set<keyof typeof blockComponents>(blocksWithNoPadding)
 
 export const RenderBlocks: React.FC<{
   blocks: Page['layout'][0][]
@@ -34,11 +43,13 @@ export const RenderBlocks: React.FC<{
           const { blockType } = block
 
           if (blockType && blockType in blockComponents) {
-            const Block = blockComponents[blockType]
+            const typedBlockType = blockType as keyof typeof blockComponents
+            const Block = blockComponents[typedBlockType]
+            const hasNoPadding = blocksWithNoPaddingSet.has(typedBlockType)
 
             if (Block) {
               return (
-                <section className="py-16 relative" key={index}>
+                <section className={`${hasNoPadding ? '' : 'py-16'} relative`} key={index}>
                   {/* @ts-expect-error there may be some mismatch between the expected types here */}
                   <Block {...block} disableInnerContainer />
                 </section>

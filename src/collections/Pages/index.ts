@@ -9,6 +9,7 @@ import { FormBlock } from '../../blocks/Form/config'
 import { MediaBlock } from '../../blocks/MediaBlock/config'
 import { ServicesBlock } from '../../blocks/ServicesBlock/config'
 import { ProjectsFeaturedBlock } from '../../blocks/ProjectsFeatured/config'
+import { ClientLogosBlock } from '../../blocks/ClientLogos/config'
 import { hero } from '@/heros/config'
 import { slugField } from '@/fields/slug'
 import { populatePublishedAt } from '../../hooks/populatePublishedAt'
@@ -85,6 +86,7 @@ export const Pages: CollectionConfig<'pages'> = {
                 FormBlock,
                 ServicesBlock,
                 ProjectsFeaturedBlock,
+                ClientLogosBlock,
               ],
               required: true,
               admin: {

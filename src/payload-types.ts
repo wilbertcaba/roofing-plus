@@ -239,6 +239,7 @@ export interface Page {
     | FormBlock
     | ServicesBlock
     | ProjectsFeaturedBlock
+    | ClientLogosBlock
   )[];
   meta?: {
     title?: string | null;
@@ -883,6 +884,36 @@ export interface ProjectsFeaturedBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ClientLogosBlock".
+ */
+export interface ClientLogosBlock {
+  heading: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  logos?:
+    | {
+        logo: number | Media;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'clientLogos';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "redirects".
  */
 export interface Redirect {
@@ -1190,6 +1221,7 @@ export interface PagesSelect<T extends boolean = true> {
         formBlock?: T | FormBlockSelect<T>;
         services?: T | ServicesBlockSelect<T>;
         featuredProject?: T | ProjectsFeaturedBlockSelect<T>;
+        clientLogos?: T | ClientLogosBlockSelect<T>;
       };
   meta?:
     | T
@@ -1335,6 +1367,21 @@ export interface ProjectsFeaturedBlockSelect<T extends boolean = true> {
         url?: T;
         label?: T;
         appearance?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ClientLogosBlock_select".
+ */
+export interface ClientLogosBlockSelect<T extends boolean = true> {
+  heading?: T;
+  logos?:
+    | T
+    | {
+        logo?: T;
+        id?: T;
       };
   id?: T;
   blockName?: T;
