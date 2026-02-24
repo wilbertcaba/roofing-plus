@@ -10,22 +10,27 @@ import { MediaBlock } from '@/blocks/MediaBlock/Component'
 import { ServicesBlock } from '@/blocks/ServicesBlock/Component'
 import { ProjectsFeaturedBlock } from '@/blocks/ProjectsFeatured/Component'
 import { ClientLogosBlock } from '@/blocks/ClientLogos/Component'
+import { ProductsFeaturedBlock } from '@/blocks/ProductsFeatured/Component'
 
 const blockComponents = {
   archive: ArchiveBlock,
   content: ContentBlock,
   cta: CallToActionBlock,
   formBlock: FormBlock,
-  mediaBlock: MediaBlock,
+  mediaBlock: (props: React.ComponentProps<typeof MediaBlock>) => (
+    <MediaBlock {...props} disableInnerContainer />
+  ),
   services: ServicesBlock,
   featuredProject: ProjectsFeaturedBlock,
   clientLogos: ClientLogosBlock,
+  productsFeatured: ProductsFeaturedBlock,
 }
 
 const blocksWithNoPadding: Array<keyof typeof blockComponents> = [
+  'services',
   'clientLogos',
   'featuredProject',
-  'services',
+  'productsFeatured',
 ]
 const blocksWithNoPaddingSet = new Set<keyof typeof blockComponents>(blocksWithNoPadding)
 
@@ -49,9 +54,9 @@ export const RenderBlocks: React.FC<{
 
             if (Block) {
               return (
-                <section className={`${hasNoPadding ? '' : 'py-16'} relative`} key={index}>
-                  {/* @ts-expect-error there may be some mismatch between the expected types here */}
-                  <Block {...block} disableInnerContainer />
+                <section className={`${hasNoPadding ? '' : 'py-10 md:py-16'} relative`} key={index}>
+                  {/* @ts-expect-error block prop typing resolves to impossible intersection */}
+                  <Block {...block} />
                 </section>
               )
             }
