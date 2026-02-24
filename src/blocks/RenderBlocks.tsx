@@ -9,16 +9,30 @@ import { FormBlock } from '@/blocks/Form/Component'
 import { MediaBlock } from '@/blocks/MediaBlock/Component'
 import { ServicesBlock } from '@/blocks/ServicesBlock/Component'
 import { ProjectsFeaturedBlock } from '@/blocks/ProjectsFeatured/Component'
+import { ClientLogosBlock } from '@/blocks/ClientLogos/Component'
+import { ProductsFeaturedBlock } from '@/blocks/ProductsFeatured/Component'
 
 const blockComponents = {
   archive: ArchiveBlock,
   content: ContentBlock,
   cta: CallToActionBlock,
   formBlock: FormBlock,
-  mediaBlock: MediaBlock,
+  mediaBlock: (props: React.ComponentProps<typeof MediaBlock>) => (
+    <MediaBlock {...props} disableInnerContainer />
+  ),
   services: ServicesBlock,
   featuredProject: ProjectsFeaturedBlock,
+  clientLogos: ClientLogosBlock,
+  productsFeatured: ProductsFeaturedBlock,
 }
+
+const blocksWithNoPadding: Array<keyof typeof blockComponents> = [
+  'services',
+  'clientLogos',
+  'featuredProject',
+  'productsFeatured',
+]
+const blocksWithNoPaddingSet = new Set<keyof typeof blockComponents>(blocksWithNoPadding)
 
 export const RenderBlocks: React.FC<{
   blocks: Page['layout'][0][]
@@ -34,13 +48,15 @@ export const RenderBlocks: React.FC<{
           const { blockType } = block
 
           if (blockType && blockType in blockComponents) {
-            const Block = blockComponents[blockType]
+            const typedBlockType = blockType as keyof typeof blockComponents
+            const Block = blockComponents[typedBlockType]
+            const hasNoPadding = blocksWithNoPaddingSet.has(typedBlockType)
 
             if (Block) {
               return (
-                <section className="py-16 relative" key={index}>
-                  {/* @ts-expect-error there may be some mismatch between the expected types here */}
-                  <Block {...block} disableInnerContainer />
+                <section className={`${hasNoPadding ? '' : 'py-10 md:py-16'} relative`} key={index}>
+                  {/* @ts-expect-error block prop typing resolves to impossible intersection */}
+                  <Block {...block} />
                 </section>
               )
             }

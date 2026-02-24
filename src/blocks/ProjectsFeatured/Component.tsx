@@ -13,7 +13,7 @@ export const ProjectsFeaturedBlock: React.FC<ProjectsFeaturedBlockType> = ({
   link,
 }) => {
   return (
-    <div className="relative h-[656px] md:h-[716px] lg:h-[784px] xl:h-[865px] -mt-48 pt-48 md:pt-56 pb-16 lg:pb-32 overflow-hidden">
+    <div className="relative h-[656px] md:h-[716px] lg:h-[784px] xl:h-[865px] pt-48 md:pt-56 pb-16 lg:pb-32 overflow-hidden">
       <div className="absolute inset-0">
         {image && typeof image === 'object' && (
           <Media
@@ -47,7 +47,7 @@ export const ProjectsFeaturedBlock: React.FC<ProjectsFeaturedBlockType> = ({
             )}
           </div>
         </div>
-        <div className="flex justify-center">{link && <CMSLink {...link} />}</div>
+        <div className="flex justify-center">{link && <CMSLink {...link} size="lg" />}</div>
       </div>
     </div>
   )
