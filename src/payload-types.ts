@@ -245,6 +245,7 @@ export interface Page {
     | ProjectsFeaturedBlock
     | ClientLogosBlock
     | ProductsFeaturedBlock
+    | WhyChooseUsBlock
   )[];
   meta?: {
     title?: string | null;
@@ -1004,6 +1005,84 @@ export interface ProductCategory {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "WhyChooseUsBlock".
+ */
+export interface WhyChooseUsBlock {
+  sectionTitle: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  stats: {
+    heading: {
+      root: {
+        type: string;
+        children: {
+          type: any;
+          version: number;
+          [k: string]: unknown;
+        }[];
+        direction: ('ltr' | 'rtl') | null;
+        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+        indent: number;
+        version: number;
+      };
+      [k: string]: unknown;
+    };
+    description: {
+      root: {
+        type: string;
+        children: {
+          type: any;
+          version: number;
+          [k: string]: unknown;
+        }[];
+        direction: ('ltr' | 'rtl') | null;
+        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+        indent: number;
+        version: number;
+      };
+      [k: string]: unknown;
+    };
+    id?: string | null;
+  }[];
+  subjectImage: number | Media;
+  backgroundImage: number | Media;
+  ctaLink: {
+    type?: ('reference' | 'custom') | null;
+    newTab?: boolean | null;
+    reference?:
+      | ({
+          relationTo: 'pages';
+          value: number | Page;
+        } | null)
+      | ({
+          relationTo: 'posts';
+          value: number | Post;
+        } | null);
+    url?: string | null;
+    label: string;
+    /**
+     * Choose how the link should be rendered.
+     */
+    appearance?: ('default' | 'outline') | null;
+  };
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'whyChooseUs';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "redirects".
  */
 export interface Redirect {
@@ -1321,6 +1400,7 @@ export interface PagesSelect<T extends boolean = true> {
         featuredProject?: T | ProjectsFeaturedBlockSelect<T>;
         clientLogos?: T | ClientLogosBlockSelect<T>;
         productsFeatured?: T | ProductsFeaturedBlockSelect<T>;
+        whyChooseUs?: T | WhyChooseUsBlockSelect<T>;
       };
   meta?:
     | T
@@ -1502,6 +1582,34 @@ export interface ProductsFeaturedBlockSelect<T extends boolean = true> {
       };
   products?: T;
   limit?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "WhyChooseUsBlock_select".
+ */
+export interface WhyChooseUsBlockSelect<T extends boolean = true> {
+  sectionTitle?: T;
+  stats?:
+    | T
+    | {
+        heading?: T;
+        description?: T;
+        id?: T;
+      };
+  subjectImage?: T;
+  backgroundImage?: T;
+  ctaLink?:
+    | T
+    | {
+        type?: T;
+        newTab?: T;
+        reference?: T;
+        url?: T;
+        label?: T;
+        appearance?: T;
+      };
   id?: T;
   blockName?: T;
 }
