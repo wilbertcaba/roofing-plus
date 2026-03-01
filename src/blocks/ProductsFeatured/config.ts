@@ -26,6 +26,22 @@ export const ProductsFeaturedBlock: Block = {
       },
     }),
     {
+      name: 'products',
+      type: 'relationship',
+      relationTo: 'products',
+      hasMany: true,
+      required: false,
+      filterOptions: {
+        featuredProduct: {
+          equals: true,
+        },
+      },
+      admin: {
+        description:
+          'Select featured products and drag to arrange the exact display order in the carousel.',
+      },
+    },
+    {
       name: 'limit',
       type: 'number',
       label: 'Products Limit',

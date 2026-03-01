@@ -939,6 +939,10 @@ export interface ProductsFeaturedBlock {
     label: string;
   };
   /**
+   * Select featured products and drag to arrange the exact display order in the carousel.
+   */
+  products?: (number | Product)[] | null;
+  /**
    * Maximum number of featured products to display in this carousel.
    */
   limit?: number | null;
@@ -1496,6 +1500,7 @@ export interface ProductsFeaturedBlockSelect<T extends boolean = true> {
         url?: T;
         label?: T;
       };
+  products?: T;
   limit?: T;
   id?: T;
   blockName?: T;

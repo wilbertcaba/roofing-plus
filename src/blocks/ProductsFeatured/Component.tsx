@@ -11,22 +11,43 @@ export const ProductsFeaturedBlock: React.FC<ProductsFeaturedBlockType> = async 
   heading,
   ctaLink,
   limit: limitFromProps,
+  products: selectedProductsFromProps,
 }) => {
   const payload = await getPayload({ config: configPromise })
   const limit = limitFromProps || 6
 
-  const featuredProducts = await payload.find({
+  const selectedProductIDs = (selectedProductsFromProps || [])
+    .map((selectedProduct) => {
+      if (typeof selectedProduct === 'number') {
+        return selectedProduct
+      }
+
+      return selectedProduct?.id
+    })
+    .filter((id): id is number => typeof id === 'number')
+
+  if (!selectedProductIDs.length) {
+    return null
+  }
+
+  const selectedProducts = await payload.find({
     collection: 'products',
     depth: 2,
-    limit,
+    limit: selectedProductIDs.length,
     where: {
-      featuredProduct: {
-        equals: true,
+      id: {
+        in: selectedProductIDs,
       },
     },
   })
 
-  const products = featuredProducts.docs as Product[]
+  const productsByID = new Map(
+    (selectedProducts.docs as Product[]).map((product) => [product.id, product]),
+  )
+  const products = selectedProductIDs
+    .map((productID) => productsByID.get(productID))
+    .filter((product): product is Product => Boolean(product))
+    .slice(0, limit)
 
   if (!products.length) {
     return null
