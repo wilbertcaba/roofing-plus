@@ -5,6 +5,7 @@ import {
   InlineToolbarFeature,
   HeadingFeature,
   lexicalEditor,
+  TextStateFeature,
 } from '@payloadcms/richtext-lexical'
 
 export const WhyChooseUsBlock: Block = {
@@ -61,6 +62,18 @@ export const WhyChooseUsBlock: Block = {
               ...rootFeatures,
               FixedToolbarFeature(),
               InlineToolbarFeature(),
+              TextStateFeature({
+                state: {
+                  color: {
+                    mutedForeground: {
+                      label: 'Muted Foreground',
+                      css: {
+                        color: 'rgb(75 85 99)',
+                      },
+                    },
+                  },
+                },
+              }),
             ],
           }),
         },
