@@ -3,13 +3,13 @@ import {
   DefaultNodeTypes,
   SerializedBlockNode,
   SerializedLinkNode,
-  type DefaultTypedEditorState,
 } from '@payloadcms/richtext-lexical'
 import {
   JSXConvertersFunction,
   LinkJSXConverter,
   RichText as ConvertRichText,
 } from '@payloadcms/richtext-lexical/react'
+import type { SerializedEditorState } from 'lexical'
 import type { CSSProperties, HTMLAttributes, ReactNode } from 'react'
 
 import { CodeBlock, CodeBlockProps } from '@/blocks/Code/Component'
@@ -40,6 +40,20 @@ const colorState: TextStateMap = {
       label: 'Muted Foreground',
       css: {
         color: 'rgb(75 85 99)',
+      },
+    },
+  },
+  size: {
+    small: {
+      label: 'Small',
+      css: {
+        fontSize: '1.25rem',
+      },
+    },
+    medium: {
+      label: 'Medium',
+      css: {
+        fontSize: '1.5rem',
       },
     },
   },
@@ -102,7 +116,7 @@ const jsxConverters: JSXConvertersFunction<NodeTypes> = ({ defaultConverters }) 
 })
 
 type Props = {
-  data: DefaultTypedEditorState
+  data: SerializedEditorState
   enableGutter?: boolean
   enableProse?: boolean
 } & HTMLAttributes<HTMLDivElement>

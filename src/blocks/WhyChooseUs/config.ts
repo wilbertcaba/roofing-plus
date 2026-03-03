@@ -72,6 +72,20 @@ export const WhyChooseUsBlock: Block = {
                       },
                     },
                   },
+                  size: {
+                    small: {
+                      label: 'Small',
+                      css: {
+                        'font-size': '1.25rem',
+                      },
+                    },
+                    medium: {
+                      label: 'Medium',
+                      css: {
+                        'font-size': '1.5rem',
+                      },
+                    },
+                  },
                 },
               }),
             ],
