@@ -76,13 +76,13 @@ export const WhyChooseUsBlock: Block = {
                     small: {
                       label: 'Small',
                       css: {
-                        'font-size': '1.25rem',
+                        'font-size': '1rem',
                       },
                     },
                     medium: {
                       label: 'Medium',
                       css: {
-                        'font-size': '1.5rem',
+                        'font-size': '1.25rem',
                       },
                     },
                   },

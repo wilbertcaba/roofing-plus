@@ -15,10 +15,13 @@ export const WhyChooseUsBlock: React.FC<WhyChooseUsBlockType> = ({
   const statsList = stats?.slice(0, 3) ?? []
 
   return (
-    <div className="relative overflow-hidden bg-white">
-      <div className="grid lg:grid-cols-2">
-        <div className="relative min-h-[360px] lg:min-h-[540px]">
+    <div className="relative bg-white">
+      <div className="grid lg:grid-cols-3">
+        <div className="relative min-h-[360px] lg:min-h-[600px]">
           <div className="absolute inset-0">
+            <h2 className="absolute top-1/2 left-12 -translate-y-1/2 z-10 text-4xl hidden sm:block lg:hidden text-white font-bold leading-snug">
+              ¿Por qué elegir <br /> a Roofing Plus?
+            </h2>
             {backgroundImage && typeof backgroundImage === 'object' && (
               <Media
                 resource={backgroundImage}
@@ -34,36 +37,28 @@ export const WhyChooseUsBlock: React.FC<WhyChooseUsBlockType> = ({
           <div className="absolute inset-0 bg-black/45" />
 
           {subjectImage && typeof subjectImage === 'object' && (
-            <div className="absolute inset-0 flex items-end justify-center">
-              <Media
-                resource={subjectImage}
-                className="max-h-full w-auto"
-                pictureClassName="block"
-                imgClassName="h-auto w-auto max-h-[95%] object-contain"
-                loading="lazy"
-              />
+            <div className="absolute w-80 md:w-96 lg:w-[564px] bottom-0 right-1/2 translate-x-1/2 sm:right-12 sm:translate-x-0 lg:-right-20">
+              <Media resource={subjectImage} imgClassName="" loading="lazy" />
             </div>
           )}
         </div>
 
-        <div className="px-6 py-12 md:px-10 lg:px-14 xl:px-16 flex items-center">
-          <div className="w-full">
+        <div className="px-4 sm:px-8 py-12 flex items-center lg:col-span-2">
+          <div className="w-full text-center">
             {sectionTitle && (
-              <RichText
-                data={sectionTitle}
-                className="m-0 p-0 text-balance [&_h2]:m-0 [&_h2]:text-3xl [&_h2]:font-bold [&_h2]:text-foreground md:[&_h2]:text-4xl"
-                enableProse={false}
-                enableGutter={false}
-              />
+              <RichText data={sectionTitle} className="sm:hidden lg:block" enableGutter={false} />
             )}
 
-            <div className="mt-8 grid gap-6 sm:grid-cols-3 md:gap-8">
+            <div className="mt-12 sm:mt-0 lg:mt-16 grid sm:grid-cols-3">
               {statsList.map((stat, index) => (
-                <div key={stat.id ?? index} className="sm:px-2 sm:border-l sm:border-border first:sm:border-l-0">
+                <div
+                  key={stat.id ?? index}
+                  className="mb-12 sm:mb-0 relative px-4 sm:border-r sm:border-border last:border-r-0"
+                >
                   {stat.heading && (
                     <RichText
                       data={stat.heading}
-                      className="m-0 p-0 text-primary [&_h1]:m-0 [&_h2]:m-0 [&_h3]:m-0 [&_h3]:text-4xl [&_h3]:font-bold [&_p]:m-0 [&_p]:text-4xl [&_p]:font-bold"
+                      className="m-0 text-primary text-5xl font-bold"
                       enableProse={false}
                       enableGutter={false}
                     />
@@ -71,7 +66,7 @@ export const WhyChooseUsBlock: React.FC<WhyChooseUsBlockType> = ({
                   {stat.description && (
                     <RichText
                       data={stat.description}
-                      className="mt-1 m-0 p-0 text-muted-foreground [&_p]:m-0"
+                      className="mt-4 leading-tight"
                       enableProse={false}
                       enableGutter={false}
                     />
@@ -81,7 +76,7 @@ export const WhyChooseUsBlock: React.FC<WhyChooseUsBlockType> = ({
             </div>
 
             {ctaLink && (
-              <div className="mt-8">
+              <div className="mt-2 sm:mt-16">
                 <CMSLink {...ctaLink} size="lg" />
               </div>
             )}

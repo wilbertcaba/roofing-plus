@@ -55,7 +55,7 @@ export const ProductsFeaturedBlock: React.FC<ProductsFeaturedBlockType> = async 
 
   return (
     <div className="overflow-hidden bg-gray-50 pt-10 pb-12 md:pt-16 md:pb-20">
-      <div className="!container mb-8 md:mb-16 flex flex-col md:flex-row flex-wrap items-center justify-center md:justify-between prose md:prose-md light:prose-invert lg:prose-lg xl:prose-xl">
+      <div className="!container mb-8 md:mb-16 flex flex-col md:flex-row flex-wrap items-center justify-center md:justify-between prose md:prose-md light:prose-invert lg:prose-lg xl:prose-xl 2xl:prose-2xl">
         {heading && <h2 className="!mb-0">{heading}</h2>}
         {ctaLink && (
           <CMSLink {...ctaLink} appearance="inline" className="font-semibold text-primary" />
