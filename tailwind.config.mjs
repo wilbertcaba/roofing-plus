@@ -159,6 +159,18 @@ const config = {
                 fontSize: '4rem',
               },
               h2: {
+                fontSize: '3rem',
+              },
+            },
+          ],
+        },
+        '2xl': {
+          css: [
+            {
+              h1: {
+                fontSize: '5rem',
+              },
+              h2: {
                 fontSize: '4rem',
               },
             },
