@@ -47,13 +47,13 @@ const colorState: TextStateMap = {
     small: {
       label: 'Small',
       css: {
-        fontSize: '1.25rem',
+        fontSize: '1rem',
       },
     },
     medium: {
       label: 'Medium',
       css: {
-        fontSize: '1.5rem',
+        fontSize: '1.25rem',
       },
     },
   },
@@ -131,7 +131,8 @@ export default function RichText(props: Props) {
         {
           container: enableGutter,
           'max-w-none': !enableGutter,
-          'mx-auto prose md:prose-md light:prose-invert lg:prose-lg xl:prose-xl': enableProse,
+          'mx-auto prose md:prose-md light:prose-invert lg:prose-lg xl:prose-xl 2xl:prose-2xl':
+            enableProse,
         },
         className,
       )}
