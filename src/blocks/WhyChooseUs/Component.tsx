@@ -20,7 +20,7 @@ export const WhyChooseUsBlock: React.FC<WhyChooseUsBlockType> = ({
         <div className="relative min-h-[360px] lg:min-h-[600px]">
           <div className="absolute inset-0">
             <h2 className="absolute top-1/2 left-12 -translate-y-1/2 z-10 text-4xl hidden sm:block lg:hidden text-white font-bold leading-snug">
-              ¿Por qué elegir <br /> a Roofing Plus?
+              ¿Por qué elegir <br /> a RoofingPlus?
             </h2>
             {backgroundImage && typeof backgroundImage === 'object' && (
               <Media
