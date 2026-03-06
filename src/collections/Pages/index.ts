@@ -12,6 +12,7 @@ import { ProjectsFeaturedBlock } from '../../blocks/ProjectsFeatured/config'
 import { ClientLogosBlock } from '../../blocks/ClientLogos/config'
 import { ProductsFeaturedBlock } from '../../blocks/ProductsFeatured/config'
 import { WhyChooseUsBlock } from '../../blocks/WhyChooseUs/config'
+import { ContactUsBlock } from '../../blocks/ContactUs/config'
 import { hero } from '@/heros/config'
 import { slugField } from '@/fields/slug'
 import { populatePublishedAt } from '../../hooks/populatePublishedAt'
@@ -91,6 +92,7 @@ export const Pages: CollectionConfig<'pages'> = {
                 ClientLogosBlock,
                 ProductsFeaturedBlock,
                 WhyChooseUsBlock,
+                ContactUsBlock,
               ],
               required: true,
               admin: {

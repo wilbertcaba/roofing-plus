@@ -255,6 +255,7 @@ export interface Page {
     | ClientLogosBlock
     | ProductsFeaturedBlock
     | WhyChooseUsBlock
+    | ContactUsBlock
   )[];
   meta?: {
     title?: string | null;
@@ -1083,6 +1084,65 @@ export interface WhyChooseUsBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ContactUsBlock".
+ */
+export interface ContactUsBlock {
+  heading: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  subheading?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  backgroundImage: number | Media;
+  link: {
+    type?: ('reference' | 'custom') | null;
+    newTab?: boolean | null;
+    reference?:
+      | ({
+          relationTo: 'pages';
+          value: number | Page;
+        } | null)
+      | ({
+          relationTo: 'posts';
+          value: number | Post;
+        } | null);
+    url?: string | null;
+    label: string;
+    /**
+     * Choose how the link should be rendered.
+     */
+    appearance?: ('default' | 'outline') | null;
+  };
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'contactUs';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "redirects".
  */
 export interface Redirect {
@@ -1414,6 +1474,7 @@ export interface PagesSelect<T extends boolean = true> {
         clientLogos?: T | ClientLogosBlockSelect<T>;
         productsFeatured?: T | ProductsFeaturedBlockSelect<T>;
         whyChooseUs?: T | WhyChooseUsBlockSelect<T>;
+        contactUs?: T | ContactUsBlockSelect<T>;
       };
   meta?:
     | T
@@ -1614,6 +1675,27 @@ export interface WhyChooseUsBlockSelect<T extends boolean = true> {
   subjectImage?: T;
   backgroundImage?: T;
   ctaLink?:
+    | T
+    | {
+        type?: T;
+        newTab?: T;
+        reference?: T;
+        url?: T;
+        label?: T;
+        appearance?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ContactUsBlock_select".
+ */
+export interface ContactUsBlockSelect<T extends boolean = true> {
+  heading?: T;
+  subheading?: T;
+  backgroundImage?: T;
+  link?:
     | T
     | {
         type?: T;

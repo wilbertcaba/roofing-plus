@@ -21,7 +21,7 @@ export const ProductsFeaturedBlock: Block = {
       appearances: false,
       overrides: {
         name: 'ctaLink',
-        label: 'Section CTA Link',
+        label: 'Link',
         required: true,
       },
     }),

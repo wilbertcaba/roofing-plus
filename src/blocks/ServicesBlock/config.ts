@@ -69,7 +69,7 @@ export const ServicesBlock: Block = {
         link({
           overrides: {
             name: 'link',
-            label: 'Service Page Link',
+            label: 'Link',
             required: true,
           },
         }),
