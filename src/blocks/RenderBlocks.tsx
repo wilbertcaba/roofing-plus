@@ -12,6 +12,7 @@ import { ProjectsFeaturedBlock } from '@/blocks/ProjectsFeatured/Component'
 import { ClientLogosBlock } from '@/blocks/ClientLogos/Component'
 import { ProductsFeaturedBlock } from '@/blocks/ProductsFeatured/Component'
 import { WhyChooseUsBlock } from '@/blocks/WhyChooseUs/Component'
+import { ContactUsBlock } from '@/blocks/ContactUs/Component'
 
 const blockComponents = {
   archive: ArchiveBlock,
@@ -26,6 +27,7 @@ const blockComponents = {
   clientLogos: ClientLogosBlock,
   productsFeatured: ProductsFeaturedBlock,
   whyChooseUs: WhyChooseUsBlock,
+  contactUs: ContactUsBlock,
 }
 
 const blocksWithNoPadding: Array<keyof typeof blockComponents> = [
@@ -34,6 +36,7 @@ const blocksWithNoPadding: Array<keyof typeof blockComponents> = [
   'featuredProject',
   'productsFeatured',
   'whyChooseUs',
+  'contactUs',
 ]
 const blocksWithNoPaddingSet = new Set<keyof typeof blockComponents>(blocksWithNoPadding)
 
