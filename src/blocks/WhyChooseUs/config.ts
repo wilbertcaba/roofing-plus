@@ -110,7 +110,7 @@ export const WhyChooseUsBlock: Block = {
     link({
       overrides: {
         name: 'ctaLink',
-        label: 'Call To Action / Button',
+        label: 'Link',
         required: true,
       },
     }),
