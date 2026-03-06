@@ -10,19 +10,64 @@ export const Footer: GlobalConfig = {
   },
   fields: [
     {
-      name: 'navItems',
+      name: 'socialIcons',
       type: 'array',
+      label: 'Social media icons',
+      fields: [
+        {
+          name: 'platform',
+          type: 'select',
+          required: true,
+          options: [
+            {
+              label: 'Instagram',
+              value: 'instagram',
+            },
+            {
+              label: 'Facebook',
+              value: 'facebook',
+            },
+            {
+              label: 'WhatsApp',
+              value: 'whatsapp',
+            },
+          ],
+        },
+        {
+          name: 'url',
+          type: 'text',
+          required: true,
+        },
+        {
+          name: 'newTab',
+          type: 'checkbox',
+          defaultValue: true,
+        },
+      ],
+      maxRows: 6,
+      admin: {
+        initCollapsed: true,
+      },
+    },
+    {
+      name: 'copyrightText',
+      type: 'text',
+      required: true,
+      defaultValue: '© 2025 RoofingPlus. Todos los derechos reservados.',
+    },
+    {
+      name: 'legalLinks',
+      type: 'array',
+      label: 'Legal links',
+      minRows: 2,
+      maxRows: 2,
       fields: [
         link({
           appearances: false,
         }),
       ],
-      maxRows: 6,
       admin: {
         initCollapsed: true,
-        components: {
-          RowLabel: '@/Footer/RowLabel#RowLabel',
-        },
       },
     },
   ],
