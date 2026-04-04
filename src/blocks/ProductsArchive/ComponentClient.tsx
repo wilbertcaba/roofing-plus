@@ -1,10 +1,17 @@
 'use client'
 
 import React, { useCallback, useEffect, useState } from 'react'
+import { SlidersHorizontal } from 'lucide-react'
 import Link from 'next/link'
 
 import { ProductCard } from '@/components/ProductCard'
 import { Button } from '@/components/ui/button'
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu'
 import type { Product, ProductCategory } from '@/payload-types'
 import { buildProductHref } from '@/utilities/buildProductHref'
 import { cn } from '@/utilities/ui'
@@ -62,11 +69,17 @@ export const ProductsArchiveClient: React.FC<ProductsArchiveClientProps> = ({
     }
   }, [hasMore, loading, page, itemsPerPage, selectedCategoryId])
 
+  const activeCategoryTitle = selectedCategorySlug
+    ? categories.find((c) => (c.slug ?? '') === selectedCategorySlug)?.title
+    : undefined
+  const mobileCategoryType =
+    activeCategoryTitle ?? (selectedCategorySlug ? selectedCategorySlug : 'Ver todos los productos')
+
   return (
     <div className="px-4 lg:px-8">
-      <div className="flex flex-col gap-4 lg:flex-row">
-        {/* Sidebar - Categorías */}
-        <aside className="w-full shrink-0 lg:w-56">
+      <div className="flex flex-col gap-4 md:flex-row">
+        {/* Sidebar - Categorías (desktop) */}
+        <aside className="hidden w-full shrink-0 lg:block md:w-56">
           <h3 className="mb-4 text-lg font-semibold">Categorías</h3>
           <nav className="flex flex-col gap-2" aria-label="Filtrar por categoría">
             <Link
@@ -99,6 +112,55 @@ export const ProductsArchiveClient: React.FC<ProductsArchiveClientProps> = ({
 
         {/* Product grid */}
         <div className="min-w-0 flex-1">
+          <div className="sticky top-0 z-20 -mx-4 bg-white px-4 py-4 lg:hidden">
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button
+                  variant="outline"
+                  className="h-auto min-h-10 w-full justify-start gap-2 rounded-lg py-2 text-left font-normal"
+                  aria-label={`${mobileCategoryType}. Abrir menú para cambiar categoría`}
+                >
+                  <SlidersHorizontal className="h-4 w-4 shrink-0 opacity-70" aria-hidden />
+                  <span className="block min-w-0 flex-1 truncate text-left font-medium text-foreground">
+                    {mobileCategoryType}
+                  </span>
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent
+                align="start"
+                className="max-h-[min(24rem,70vh)] w-[var(--radix-dropdown-menu-trigger-width)] min-w-[var(--radix-dropdown-menu-trigger-width)] overflow-y-auto"
+              >
+                <DropdownMenuItem
+                  asChild
+                  className={cn(
+                    !selectedCategorySlug &&
+                      'bg-primary/10 font-medium text-primary focus:bg-primary/15 focus:text-primary',
+                  )}
+                >
+                  <Link href="/productos">Ver todos los productos</Link>
+                </DropdownMenuItem>
+                {categories.map((cat) => {
+                  const slug = cat.slug ?? ''
+                  const isActive = selectedCategorySlug === slug
+                  return (
+                    <DropdownMenuItem
+                      key={cat.id}
+                      asChild
+                      className={cn(
+                        isActive &&
+                          'bg-primary/10 font-medium text-primary focus:bg-primary/15 focus:text-primary',
+                      )}
+                    >
+                      <Link href={`/productos?categoria=${encodeURIComponent(slug)}`}>
+                        {cat.title}
+                      </Link>
+                    </DropdownMenuItem>
+                  )
+                })}
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </div>
+
           {products.length === 0 ? (
             <p className="text-muted-foreground">No hay productos en esta categoría.</p>
           ) : (
