@@ -7,6 +7,7 @@ import { ProductCard } from '@/components/ProductCard'
 import { Button } from '@/components/ui/button'
 import { Carousel, CarouselApi, CarouselContent, CarouselItem } from '@/components/ui/carousel'
 import type { Product } from '@/payload-types'
+import { buildProductHref } from '@/utilities/buildProductHref'
 
 type ProductsFeaturedCarouselProps = {
   products: Product[]
@@ -55,7 +56,7 @@ export const ProductsFeaturedCarousel: React.FC<ProductsFeaturedCarouselProps> =
               {typeof product.productImage === 'object' && (
                 <ProductCard
                   colors={product.colors}
-                  href={product.slug ? `/productos/${product.slug}` : undefined}
+                  href={buildProductHref(product)}
                   productCategory={product.productCategory}
                   productImage={product.productImage}
                   productName={product.productName}
