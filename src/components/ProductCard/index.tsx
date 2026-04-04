@@ -47,7 +47,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
         className,
       )}
     >
-      <div className="aspect-[4/3] overflow-hidden">
+      <div className="h-[288px] overflow-hidden">
         {typeof selectedImage === 'object' && (
           <Media
             resource={selectedImage}
@@ -72,7 +72,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           )}
 
           {visibleColors.length > 0 && (
-            <div className="mt-5 flex items-center gap-3">
+            <div className="mt-5 flex items-center gap-1">
               {visibleColors.map((color, index) => {
                 const isSelected = index === activeColorIndex
 
