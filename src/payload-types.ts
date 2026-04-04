@@ -253,6 +253,7 @@ export interface Page {
     | ServicesBlock
     | ProjectsFeaturedBlock
     | ClientLogosBlock
+    | ProductsArchiveBlock
     | ProductsFeaturedBlock
     | WhyChooseUsBlock
     | ContactUsBlock
@@ -921,6 +922,19 @@ export interface ClientLogosBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ProductsArchiveBlock".
+ */
+export interface ProductsArchiveBlock {
+  /**
+   * Number of products per page. Load more button is hidden when total products ≤ this value.
+   */
+  itemsPerPage: number;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'productsArchive';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "ProductsFeaturedBlock".
  */
 export interface ProductsFeaturedBlock {
@@ -1472,6 +1486,7 @@ export interface PagesSelect<T extends boolean = true> {
         services?: T | ServicesBlockSelect<T>;
         featuredProject?: T | ProjectsFeaturedBlockSelect<T>;
         clientLogos?: T | ClientLogosBlockSelect<T>;
+        productsArchive?: T | ProductsArchiveBlockSelect<T>;
         productsFeatured?: T | ProductsFeaturedBlockSelect<T>;
         whyChooseUs?: T | WhyChooseUsBlockSelect<T>;
         contactUs?: T | ContactUsBlockSelect<T>;
@@ -1636,6 +1651,15 @@ export interface ClientLogosBlockSelect<T extends boolean = true> {
         logo?: T;
         id?: T;
       };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ProductsArchiveBlock_select".
+ */
+export interface ProductsArchiveBlockSelect<T extends boolean = true> {
+  itemsPerPage?: T;
   id?: T;
   blockName?: T;
 }
