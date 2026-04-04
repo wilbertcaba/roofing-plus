@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useCallback, useEffect, useState } from 'react'
-import { SlidersHorizontal } from 'lucide-react'
+import { ChevronDown, SlidersHorizontal } from 'lucide-react'
 import Link from 'next/link'
 
 import { ProductCard } from '@/components/ProductCard'
@@ -117,13 +117,14 @@ export const ProductsArchiveClient: React.FC<ProductsArchiveClientProps> = ({
               <DropdownMenuTrigger asChild>
                 <Button
                   variant="outline"
-                  className="h-auto min-h-10 w-full justify-start gap-2 rounded-lg py-2 text-left font-normal"
+                  className="h-auto min-h-10 w-full justify-between gap-2 rounded-lg py-2 text-left font-normal"
                   aria-label={`${mobileCategoryType}. Abrir menú para cambiar categoría`}
                 >
-                  <SlidersHorizontal className="h-4 w-4 shrink-0 opacity-70" aria-hidden />
-                  <span className="block min-w-0 flex-1 truncate text-left font-medium text-foreground">
-                    {mobileCategoryType}
+                  <span className="flex min-w-0 flex-1 items-center gap-2">
+                    <SlidersHorizontal className="h-4 w-4 shrink-0 opacity-70" aria-hidden />
+                    <span className="truncate font-medium text-foreground">{mobileCategoryType}</span>
                   </span>
+                  <ChevronDown className="h-4 w-4 shrink-0 opacity-50" aria-hidden />
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent
