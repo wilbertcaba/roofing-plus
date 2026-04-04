@@ -11,9 +11,14 @@ import { generateMeta } from '@/utilities/generateMeta'
 import { LivePreviewListener } from '@/components/LivePreviewListener'
 import PageClient from '@/app/(frontend)/[slug]/page.client'
 
+export type BlockContext = {
+  selectedCategorySlug?: string | null
+}
+
 type PageBySlugProps = {
   slug: string
   url?: string
+  selectedCategorySlug?: string | null
 }
 
 const queryPageBySlug = cache(async ({ slug }: { slug: string }) => {
@@ -36,7 +41,11 @@ const queryPageBySlug = cache(async ({ slug }: { slug: string }) => {
   return result.docs?.[0] || null
 })
 
-export async function PageBySlug({ slug, url }: PageBySlugProps) {
+export async function PageBySlug({
+  slug,
+  url,
+  selectedCategorySlug,
+}: PageBySlugProps) {
   const { isEnabled: draft } = await draftMode()
   const resolvedURL = url ?? (slug === 'home' ? '/' : `/${slug}`)
 
@@ -47,6 +56,7 @@ export async function PageBySlug({ slug, url }: PageBySlugProps) {
   }
 
   const { hero, layout } = page
+  const blockContext: BlockContext = { selectedCategorySlug: selectedCategorySlug ?? null }
 
   return (
     <article>
@@ -54,7 +64,7 @@ export async function PageBySlug({ slug, url }: PageBySlugProps) {
       <PayloadRedirects disableNotFound url={resolvedURL} />
       {draft && <LivePreviewListener />}
       <RenderHero {...hero} />
-      <RenderBlocks blocks={layout} />
+      <RenderBlocks blocks={layout} blockContext={blockContext} />
     </article>
   )
 }

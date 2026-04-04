@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react'
 
+import type { BlockContext } from '@/app/(frontend)/_components/PageBySlug'
 import type { Page } from '@/payload-types'
 
 import { ArchiveBlock } from '@/blocks/ArchiveBlock/Component'
@@ -10,6 +11,7 @@ import { MediaBlock } from '@/blocks/MediaBlock/Component'
 import { ServicesBlock } from '@/blocks/ServicesBlock/Component'
 import { ProjectsFeaturedBlock } from '@/blocks/ProjectsFeatured/Component'
 import { ClientLogosBlock } from '@/blocks/ClientLogos/Component'
+import { ProductsArchiveBlock } from '@/blocks/ProductsArchive/Component'
 import { ProductsFeaturedBlock } from '@/blocks/ProductsFeatured/Component'
 import { WhyChooseUsBlock } from '@/blocks/WhyChooseUs/Component'
 import { ContactUsBlock } from '@/blocks/ContactUs/Component'
@@ -25,6 +27,7 @@ const blockComponents = {
   services: ServicesBlock,
   featuredProject: ProjectsFeaturedBlock,
   clientLogos: ClientLogosBlock,
+  productsArchive: ProductsArchiveBlock,
   productsFeatured: ProductsFeaturedBlock,
   whyChooseUs: WhyChooseUsBlock,
   contactUs: ContactUsBlock,
@@ -42,8 +45,9 @@ const blocksWithNoPaddingSet = new Set<keyof typeof blockComponents>(blocksWithN
 
 export const RenderBlocks: React.FC<{
   blocks: Page['layout'][0][]
+  blockContext?: BlockContext
 }> = (props) => {
-  const { blocks } = props
+  const { blocks, blockContext } = props
 
   const hasBlocks = blocks && Array.isArray(blocks) && blocks.length > 0
 
@@ -59,10 +63,15 @@ export const RenderBlocks: React.FC<{
             const hasNoPadding = blocksWithNoPaddingSet.has(typedBlockType)
 
             if (Block) {
+              const blockProps =
+                blockType === 'productsArchive' && blockContext
+                  ? { ...block, selectedCategorySlug: blockContext.selectedCategorySlug ?? null }
+                  : block
+
               return (
                 <section className={`${hasNoPadding ? '' : 'py-10 md:py-16'} relative`} key={index}>
                   {/* @ts-expect-error block prop typing resolves to impossible intersection */}
-                  <Block {...block} />
+                  <Block {...blockProps} />
                 </section>
               )
             }
