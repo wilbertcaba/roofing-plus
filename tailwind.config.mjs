@@ -31,6 +31,8 @@ const config = {
     container: {
       center: true,
       padding: {
+        '4xl': '2rem',
+        '3xl': '2rem',
         '2xl': '2rem',
         DEFAULT: '1rem',
         lg: '2rem',
@@ -39,7 +41,9 @@ const config = {
         xl: '2rem',
       },
       screens: {
-        '2xl': '86rem',
+        '4xl': '160rem',
+        '3xl': '120rem',
+        '2xl': '96rem',
         lg: '64rem',
         md: '48rem',
         sm: '40rem',
@@ -47,6 +51,15 @@ const config = {
       },
     },
     extend: {
+      screens: {
+        '4xl': '160rem',
+        '3xl': '120rem',
+        '2xl': '96rem',
+        lg: '64rem',
+        md: '48rem',
+        sm: '40rem',
+        xl: '80rem',
+      },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',

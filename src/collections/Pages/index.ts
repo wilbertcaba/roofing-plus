@@ -10,6 +10,7 @@ import { MediaBlock } from '../../blocks/MediaBlock/config'
 import { ServicesBlock } from '../../blocks/ServicesBlock/config'
 import { ProjectsFeaturedBlock } from '../../blocks/ProjectsFeatured/config'
 import { ClientLogosBlock } from '../../blocks/ClientLogos/config'
+import { ProductsArchiveBlock } from '../../blocks/ProductsArchive/config'
 import { ProductsFeaturedBlock } from '../../blocks/ProductsFeatured/config'
 import { WhyChooseUsBlock } from '../../blocks/WhyChooseUs/config'
 import { ContactUsBlock } from '../../blocks/ContactUs/config'
@@ -90,6 +91,7 @@ export const Pages: CollectionConfig<'pages'> = {
                 ServicesBlock,
                 ProjectsFeaturedBlock,
                 ClientLogosBlock,
+                ProductsArchiveBlock,
                 ProductsFeaturedBlock,
                 WhyChooseUsBlock,
                 ContactUsBlock,
