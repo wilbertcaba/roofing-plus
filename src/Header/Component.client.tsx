@@ -8,6 +8,7 @@ import type { Header } from '@/payload-types'
 
 import { Logo } from '@/components/Logo/Logo'
 import { HeaderNav } from './Nav'
+import { SiteBreadcrumbs } from './SiteBreadcrumbs'
 
 interface HeaderClientProps {
   data: Header
@@ -37,6 +38,7 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
         </Link>
         <HeaderNav data={data} />
       </div>
+      <SiteBreadcrumbs />
     </header>
   )
 }
