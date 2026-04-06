@@ -4,14 +4,25 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import React from 'react'
 
+import { Button } from '@/components/ui/button'
 import {
   Breadcrumb,
+  BreadcrumbEllipsis,
   BreadcrumbItem,
   BreadcrumbLink,
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from '@/components/ui/breadcrumb'
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu'
+
+import { useMediaQuery } from './hooks/use-media-query'
 
 const SEGMENT_LABELS: Record<string, string> = {
   contactanos: 'Contáctanos',
@@ -66,6 +77,7 @@ function buildTrail(pathname: string): TrailItem[] {
 
 export const SiteBreadcrumbs: React.FC = () => {
   const pathname = usePathname()
+  const isNarrowPhone = useMediaQuery('(max-width: 767px)')
 
   if (!pathname || pathname === '/') {
     return null
@@ -76,6 +88,11 @@ export const SiteBreadcrumbs: React.FC = () => {
     return null
   }
 
+  const useCollapsedTrail = isNarrowPhone && trail.length > 2
+  const firstCrumb = trail[0]
+  const innerCrumbs = trail.slice(1, -1)
+  const lastCrumb = trail[trail.length - 1]
+
   return (
     <div className="border-t border-border/60 -mx-4 md:-mx-8 px-4 md:px-8 py-3 md:py-4">
       <Breadcrumb>
@@ -85,23 +102,63 @@ export const SiteBreadcrumbs: React.FC = () => {
               <Link href="/">Inicio</Link>
             </BreadcrumbLink>
           </BreadcrumbItem>
-          {trail.map((item, index) => {
-            const isLast = index === trail.length - 1
-            return (
-              <React.Fragment key={item.href}>
-                <BreadcrumbSeparator />
-                <BreadcrumbItem>
-                  {isLast ? (
-                    <BreadcrumbPage>{item.label}</BreadcrumbPage>
-                  ) : (
-                    <BreadcrumbLink asChild>
-                      <Link href={item.href}>{item.label}</Link>
-                    </BreadcrumbLink>
-                  )}
-                </BreadcrumbItem>
-              </React.Fragment>
-            )
-          })}
+          {useCollapsedTrail ? (
+            <>
+              <BreadcrumbSeparator />
+              <BreadcrumbItem>
+                <BreadcrumbLink asChild>
+                  <Link href={firstCrumb.href}>{firstCrumb.label}</Link>
+                </BreadcrumbLink>
+              </BreadcrumbItem>
+              <BreadcrumbSeparator />
+              <BreadcrumbItem>
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <Button
+                      type="button"
+                      variant="ghost"
+                      size="icon"
+                      className="h-9 w-9 shrink-0 text-muted-foreground hover:text-foreground"
+                      aria-label="Más niveles de navegación"
+                    >
+                      <BreadcrumbEllipsis />
+                    </Button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent align="start">
+                    <DropdownMenuGroup>
+                      {innerCrumbs.map((item) => (
+                        <DropdownMenuItem key={item.href} asChild>
+                          <Link href={item.href}>{item.label}</Link>
+                        </DropdownMenuItem>
+                      ))}
+                    </DropdownMenuGroup>
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              </BreadcrumbItem>
+              <BreadcrumbSeparator />
+              <BreadcrumbItem>
+                <BreadcrumbPage>{lastCrumb.label}</BreadcrumbPage>
+              </BreadcrumbItem>
+            </>
+          ) : (
+            trail.map((item, index) => {
+              const isLast = index === trail.length - 1
+              return (
+                <React.Fragment key={item.href}>
+                  <BreadcrumbSeparator />
+                  <BreadcrumbItem>
+                    {isLast ? (
+                      <BreadcrumbPage>{item.label}</BreadcrumbPage>
+                    ) : (
+                      <BreadcrumbLink asChild>
+                        <Link href={item.href}>{item.label}</Link>
+                      </BreadcrumbLink>
+                    )}
+                  </BreadcrumbItem>
+                </React.Fragment>
+              )
+            })
+          )}
         </BreadcrumbList>
       </Breadcrumb>
     </div>
